@@ -1,0 +1,28 @@
+# server setting
+server:
+  port: 8080
+  tomcat:
+    threads:
+      max: 100
+
+
+# profile setting
+# application-{spring:profiles:active}.yml
+
+---
+spring:
+  profiles:
+    active:
+      - local # ???? ?? ???? ??
+
+---
+spring:
+  profiles: local
+
+---
+spring:
+  profiles: dev
+
+---
+spring:
+  profiles: prod

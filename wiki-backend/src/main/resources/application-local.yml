@@ -1,0 +1,52 @@
+# application-local.yml
+# spring
+spring:
+  application:
+    name: wiki_local
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 30MB
+      enabled: true
+
+   # h2
+    datasource:
+      url: jdbc:h2:mem:wiki_local;DB_CLOSE_DELAY=-1 # [1] jdbc:h2:~/wiki_local -> [2] jdbc:h2:tcp://localhost/~/wiki_local
+      driver-class-name: org.h2.Driver
+      username: sa
+      password:
+      h2:
+        console:
+          enabled: true
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: Asia/Seoul
+    show-sql: true
+    defer-datasource-initialization: true
+
+# cors
+cors:
+  allow-origin:
+    urls: http://localhost:8080, http://localhost:3000
+
+# swagger
+springdoc:
+  packages-to-scan: com.internal.team.wiki
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    path:
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /api-docs/json
+    groups:
+      enabled: true
