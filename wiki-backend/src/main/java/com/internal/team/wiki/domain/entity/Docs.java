@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name ="documents")
+@Table(name ="docs")
 @Entity
 public class Docs extends BaseEntityTime {
 
