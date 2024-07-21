@@ -13,7 +13,7 @@ server:
 spring:
   profiles:
     active:
-      - local # ???? ?? ???? ??
+      - local # 활성화할 기본 프로파일 설정 
 
 ---
 spring:
