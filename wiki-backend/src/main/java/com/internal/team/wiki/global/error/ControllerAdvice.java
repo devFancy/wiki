@@ -43,6 +43,7 @@ public class ControllerAdvice {
         return new ResponseEntity<>(apiResultResponse, HttpStatus.BAD_REQUEST);
     }
 
+    /**
     @ExceptionHandler({
 
     })
@@ -55,21 +56,12 @@ public class ControllerAdvice {
     @ExceptionHandler({
 
     })
-    public ResponseEntity<ApiResultResponse<ErrorResponse>> handleUnauthorizedException(final CustomException e) {
-        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode(), e.getMessage());
-        ApiResultResponse<ErrorResponse> apiResultResponse = ApiResultResponse.failure(errorResponse, ERROR);
-        return new ResponseEntity<>(apiResultResponse, HttpStatus.UNAUTHORIZED);
-    }
-
-    @ExceptionHandler({
-
-    })
     public ResponseEntity<ApiResultResponse<ErrorResponse>> handleNotFoundException(final CustomException e) {
         ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode(), e.getMessage());
         ApiResultResponse<ErrorResponse> apiResultResponse = ApiResultResponse.failure(errorResponse, ERROR);
         return new ResponseEntity<>(apiResultResponse, HttpStatus.NOT_FOUND);
     }
-
+    **/
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ApiResultResponse<ErrorResponse>> handleMethodNotAllowedException(final CustomException e) {
