@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 public enum ErrorCode {
 
     // Docs
+    DOCUMENT_NOT_FOUND(HttpStatus.NOT_FOUND, "DOCUMENT_NOT_FOUND", "The document was not found."),
 
     // Etc
     INVALID_DTO_FIELD(HttpStatus.BAD_REQUEST, "INVALID_DTO_FIELD", "The DTO field is incorrect."),
