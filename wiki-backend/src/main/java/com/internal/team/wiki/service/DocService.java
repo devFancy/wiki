@@ -2,11 +2,11 @@ package com.internal.team.wiki.service;
 
 
 import com.internal.team.wiki.domain.entity.Doc;
-import com.internal.team.wiki.dto.DocCreateRequest;
-import com.internal.team.wiki.dto.DocDetailResponse;
-import com.internal.team.wiki.dto.DocsResponse;
-import com.internal.team.wiki.global.error.CustomException;
-import com.internal.team.wiki.global.error.ErrorCode;
+import com.internal.team.wiki.dto.request.DocCreateRequest;
+import com.internal.team.wiki.dto.request.DocUpdateRequest;
+import com.internal.team.wiki.dto.response.DocDetailResponse;
+import com.internal.team.wiki.dto.response.DocsResponse;
+import com.internal.team.wiki.exception.NotFoundDocException;
 import com.internal.team.wiki.repository.DocRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,12 +32,27 @@ public class DocService {
 
     public DocDetailResponse findOne(final Long docId) {
         Doc doc = docRepository.findById(docId)
-                .orElseThrow(() -> new CustomException(ErrorCode.DOCUMENT_NOT_FOUND, "Document not found"));
+                .orElseThrow(() -> new NotFoundDocException());
         return DocDetailResponse.of(doc);
     }
 
     public DocsResponse findAll() {
         List<Doc> docs = docRepository.findAllByOrderByCreatedDateTimeDesc();
         return DocsResponse.of(docs);
+    }
+
+    @Transactional
+    public DocDetailResponse update(final Long docId, final DocUpdateRequest request) {
+        Doc doc = findDoc(docId);
+        doc.change(request.getTitle(), request.getContents());
+        return DocDetailResponse.of(doc);
+    }
+
+    private Doc findDoc(final Long docId) {
+        List<Doc> docs = docRepository.findByDocsId(docId);
+        if(docs.isEmpty()) {
+            throw new NotFoundDocException();
+        }
+        return docs.get(0);
     }
 }

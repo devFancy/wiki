@@ -1,17 +1,21 @@
 package com.internal.team.wiki.controller;
 
-import com.internal.team.wiki.dto.DocCreateRequest;
-import com.internal.team.wiki.dto.DocDetailResponse;
-import com.internal.team.wiki.dto.DocsResponse;
+import com.internal.team.wiki.dto.request.DocCreateRequest;
+import com.internal.team.wiki.dto.request.DocUpdateRequest;
+import com.internal.team.wiki.dto.response.DocDetailResponse;
+import com.internal.team.wiki.dto.response.DocsResponse;
 import com.internal.team.wiki.global.api.ApiResultResponse;
 import com.internal.team.wiki.service.DocService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 public class DocController {
@@ -23,7 +27,7 @@ public class DocController {
     }
 
     @PostMapping(value = "/api/v1/docs")
-    public ResponseEntity<ApiResultResponse<DocDetailResponse>> create(@RequestBody final DocCreateRequest request) {
+    public ResponseEntity<ApiResultResponse<DocDetailResponse>> create(@Valid @RequestBody final DocCreateRequest request) {
         DocDetailResponse response = docService.create(request);
         ApiResultResponse<DocDetailResponse> apiResultResponse = ApiResultResponse.success(response, "docs");
         return new ResponseEntity<>(apiResultResponse, HttpStatus.CREATED);
@@ -41,5 +45,13 @@ public class DocController {
         DocsResponse response = docService.findAll();
         ApiResultResponse<DocsResponse> apiResultResponse = ApiResultResponse.success(response, "docs");
         return new ResponseEntity<>(apiResultResponse, HttpStatus.OK);
+    }
+
+    @PatchMapping(value = "/api/v1/docs/{id}")
+    public ResponseEntity<ApiResultResponse<DocDetailResponse>> update(@PathVariable(name = "id") final Long docId,
+                                                                       @Valid @RequestBody final DocUpdateRequest request) {
+        DocDetailResponse response = docService.update(docId, request);
+        ApiResultResponse<DocDetailResponse> apiResultResponse = ApiResultResponse.success(response, "docs");
+        return new ResponseEntity<>(apiResultResponse, HttpStatus.NO_CONTENT);
     }
 }

@@ -34,4 +34,9 @@ public class Doc extends BaseEntityTime {
         this.title = title;
         this.contents = contents;
     }
+
+    public void change(final String title, final String contents) {
+        this.title = title;
+        this.contents = contents;
+    }
 }

@@ -12,8 +12,8 @@ import java.util.List;
 public interface DocRepository extends JpaRepository<Doc, Long> {
 
     @Query("SELECT d FROM Doc d WHERE d.id = :docId")
-    Doc findByDocsId(@Param("docId") final Long docId);
+    List<Doc> findByDocsId(@Param("docId") final Long docId);
 
-    @Query(value = "SELECT d FROM Doc d ORDER BY d.createdDateTime DESC", nativeQuery = false)
+    @Query(value = "SELECT d FROM Doc d ORDER BY d.createdDateTime DESC")
     List<Doc> findAllByOrderByCreatedDateTimeDesc();
 }
