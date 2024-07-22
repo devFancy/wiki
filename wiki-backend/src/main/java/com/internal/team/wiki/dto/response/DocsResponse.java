@@ -1,4 +1,4 @@
-package com.internal.team.wiki.dto;
+package com.internal.team.wiki.dto.response;
 
 import com.internal.team.wiki.domain.entity.Doc;
 import lombok.Getter;

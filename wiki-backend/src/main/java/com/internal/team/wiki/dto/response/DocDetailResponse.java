@@ -1,4 +1,4 @@
-package com.internal.team.wiki.dto;
+package com.internal.team.wiki.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.internal.team.wiki.domain.entity.Doc;
