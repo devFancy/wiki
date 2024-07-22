@@ -2,6 +2,7 @@ package com.internal.team.wiki.controller;
 
 import com.internal.team.wiki.dto.DocsCreateRequest;
 import com.internal.team.wiki.dto.DocsDetailResponse;
+import com.internal.team.wiki.dto.DocsResponse;
 import com.internal.team.wiki.global.api.ApiResultResponse;
 import com.internal.team.wiki.service.DocsService;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,13 @@ public class DocsController {
     public ResponseEntity<ApiResultResponse<DocsDetailResponse>> findOne(@PathVariable(name = "id") final Long docId) {
         DocsDetailResponse response = docsService.findOne(docId);
         ApiResultResponse<DocsDetailResponse> apiResultResponse = ApiResultResponse.success(response, "docs");
+        return new ResponseEntity<>(apiResultResponse, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/api/v1/docs")
+    public ResponseEntity<ApiResultResponse<DocsResponse>> findAll() {
+        DocsResponse response = docsService.findAll();
+        ApiResultResponse<DocsResponse> apiResultResponse = ApiResultResponse.success(response, "docs");
         return new ResponseEntity<>(apiResultResponse, HttpStatus.OK);
     }
 }
