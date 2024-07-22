@@ -8,6 +8,7 @@ import com.internal.team.wiki.global.api.ApiResultResponse;
 import com.internal.team.wiki.service.DocService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +53,14 @@ public class DocController {
                                                                        @Valid @RequestBody final DocUpdateRequest request) {
         DocDetailResponse response = docService.update(docId, request);
         ApiResultResponse<DocDetailResponse> apiResultResponse = ApiResultResponse.success(response, "docs");
+        return new ResponseEntity<>(apiResultResponse, HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping(value = "/api/v1/docs/{id}")
+    public ResponseEntity<ApiResultResponse<Void>> delete(@PathVariable(name = "id") final Long docId) {
+
+        docService.delete(docId);
+        ApiResultResponse<Void> apiResultResponse = ApiResultResponse.successVoid("docs");
         return new ResponseEntity<>(apiResultResponse, HttpStatus.NO_CONTENT);
     }
 }

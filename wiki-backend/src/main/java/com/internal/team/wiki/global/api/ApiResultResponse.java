@@ -31,6 +31,10 @@ public class ApiResultResponse<T> {
         return new ApiResultResponse<>(true, data, domainName, null, null);
     }
 
+    public static ApiResultResponse<Void> successVoid(final String message) {
+        return new ApiResultResponse<>(true, null, message, null, null);
+    }
+
     public static ApiResultResponse<ErrorResponse> failure(final ErrorResponse errorResponse, final String error) {
         return new ApiResultResponse<>(false, null, null, errorResponse, error);
     }

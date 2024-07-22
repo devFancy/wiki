@@ -55,4 +55,10 @@ public class DocService {
         }
         return docs.get(0);
     }
+
+    @Transactional
+    public void delete(final Long docId) {
+        Doc doc = findDoc(docId);
+        docRepository.delete(doc);
+    }
 }
