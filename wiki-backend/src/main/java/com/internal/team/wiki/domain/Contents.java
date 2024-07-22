@@ -12,8 +12,6 @@ import java.util.Objects;
 @Embeddable
 public class Contents {
 
-    private static final int MAX_CONTENT_LENGTH = 200;
-
     @Column(name = "contents", nullable = false)
     @Lob
     private String value;
@@ -21,16 +19,13 @@ public class Contents {
     protected Contents() {
     }
 
-    public Contents(String value) {
+    public Contents(final String value) {
         validate(value);
         this.value = value;
     }
 
-    private void validate(String value) {
+    private void validate(final String value) {
         if (value == null || value.isBlank()) {
-            throw new InvalidContentException();
-        }
-        if (value.length() > MAX_CONTENT_LENGTH) {
             throw new InvalidContentException();
         }
     }
