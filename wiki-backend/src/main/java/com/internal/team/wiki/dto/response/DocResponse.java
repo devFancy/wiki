@@ -19,8 +19,8 @@ public class DocResponse {
 
     public static DocResponse from(final Doc doc) {
         return DocResponse.builder()
-                .title(doc.getTitle())
-                .contents(doc.getContents())
+                .title(doc.getTitle().getValue())
+                .contents(doc.getContents().getValue())
                 .build();
     }
 }

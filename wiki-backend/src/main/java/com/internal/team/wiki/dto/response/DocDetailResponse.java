@@ -30,8 +30,8 @@ public class DocDetailResponse {
     public static DocDetailResponse of(final Doc saveDoc) {
         return DocDetailResponse.builder()
                 .writerName(saveDoc.getWriterName())
-                .title(saveDoc.getTitle())
-                .contents(saveDoc.getContents())
+                .title(saveDoc.getTitle().getValue())
+                .contents(saveDoc.getContents().getValue())
                 .updatedDateTime(saveDoc.getUpdatedDateTime())
                 .build();
     }

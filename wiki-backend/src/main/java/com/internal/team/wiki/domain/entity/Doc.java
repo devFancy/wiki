@@ -1,11 +1,14 @@
 package com.internal.team.wiki.domain.entity;
 
+import com.internal.team.wiki.domain.Contents;
+import com.internal.team.wiki.domain.Title;
 import com.internal.team.wiki.global.BaseEntityTime;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,19 +27,21 @@ public class Doc extends BaseEntityTime {
 
     private String writerName;
 
-    private String title;
+    @Embedded
+    private Title title;
 
-    private String contents;
+    @Embedded
+    private Contents contents;
 
     @Builder
     public Doc(final String writerName, final String title, final String contents) {
         this.writerName = writerName;
-        this.title = title;
-        this.contents = contents;
+        this.title = new Title(title);
+        this.contents = new Contents(contents);
     }
 
     public void change(final String title, final String contents) {
-        this.title = title;
-        this.contents = contents;
+        this.title = new Title(title);
+        this.contents = new Contents(contents);
     }
 }

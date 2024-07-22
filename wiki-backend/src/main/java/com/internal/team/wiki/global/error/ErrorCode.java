@@ -8,6 +8,8 @@ public enum ErrorCode {
 
     // Docs
     DOCUMENT_NOT_FOUND(HttpStatus.NOT_FOUND, "DOCUMENT_NOT_FOUND", "The document was not found."),
+    TITLE_INVALID(HttpStatus.BAD_REQUEST, "TITLE_INVALID", "The title is invalid"),
+    CONTENT_INVALID(HttpStatus.BAD_REQUEST, "CONTENT_INVALID", "The content is invalid"),
 
     // Etc
     INVALID_DTO_FIELD(HttpStatus.BAD_REQUEST, "INVALID_DTO_FIELD", "The DTO field is incorrect."),
