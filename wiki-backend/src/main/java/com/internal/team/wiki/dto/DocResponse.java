@@ -1,6 +1,6 @@
 package com.internal.team.wiki.dto;
 
-import com.internal.team.wiki.domain.entity.Docs;
+import com.internal.team.wiki.domain.entity.Doc;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -17,7 +17,7 @@ public class DocResponse {
         this.contents = contents;
     }
 
-    public static DocResponse from(final Docs doc) {
+    public static DocResponse from(final Doc doc) {
         return DocResponse.builder()
                 .title(doc.getTitle())
                 .contents(doc.getContents())

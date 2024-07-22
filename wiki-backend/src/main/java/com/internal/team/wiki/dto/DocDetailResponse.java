@@ -1,14 +1,14 @@
 package com.internal.team.wiki.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.internal.team.wiki.domain.entity.Docs;
+import com.internal.team.wiki.domain.entity.Doc;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class DocsDetailResponse {
+public class DocDetailResponse {
 
     private final String writerName;
 
@@ -20,19 +20,19 @@ public class DocsDetailResponse {
     private final LocalDateTime updatedDateTime;
 
     @Builder
-    public DocsDetailResponse(final String writerName, final String title, final String contents, final LocalDateTime updatedDateTime) {
+    public DocDetailResponse(final String writerName, final String title, final String contents, final LocalDateTime updatedDateTime) {
         this.writerName = writerName;
         this.title = title;
         this.contents = contents;
         this.updatedDateTime = updatedDateTime;
     }
 
-    public static DocsDetailResponse of(final Docs saveDocs) {
-        return DocsDetailResponse.builder()
-                .writerName(saveDocs.getWriterName())
-                .title(saveDocs.getTitle())
-                .contents(saveDocs.getContents())
-                .updatedDateTime(saveDocs.getUpdatedDateTime())
+    public static DocDetailResponse of(final Doc saveDoc) {
+        return DocDetailResponse.builder()
+                .writerName(saveDoc.getWriterName())
+                .title(saveDoc.getTitle())
+                .contents(saveDoc.getContents())
+                .updatedDateTime(saveDoc.getUpdatedDateTime())
                 .build();
     }
 }

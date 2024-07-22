@@ -1,6 +1,6 @@
 package com.internal.team.wiki.dto;
 
-import com.internal.team.wiki.domain.entity.Docs;
+import com.internal.team.wiki.domain.entity.Doc;
 import lombok.Getter;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class DocsResponse {
         this.responses = responses;
     }
 
-    public static DocsResponse of(final List<Docs> docs) {
+    public static DocsResponse of(final List<Doc> docs) {
         List<DocResponse> responses = docs.stream()
                 .map(DocResponse::from)
                 .collect(Collectors.toList());

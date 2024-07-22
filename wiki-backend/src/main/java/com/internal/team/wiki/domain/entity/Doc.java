@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name ="docs")
 @Entity
-public class Docs extends BaseEntityTime {
+public class Doc extends BaseEntityTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class Docs extends BaseEntityTime {
     private String contents;
 
     @Builder
-    public Docs(final String writerName, final String title, final String contents) {
+    public Doc(final String writerName, final String title, final String contents) {
         this.writerName = writerName;
         this.title = title;
         this.contents = contents;
