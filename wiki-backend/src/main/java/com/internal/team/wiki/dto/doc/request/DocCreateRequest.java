@@ -1,6 +1,6 @@
-package com.internal.team.wiki.dto.request;
+package com.internal.team.wiki.dto.doc.request;
 
-import com.internal.team.wiki.domain.entity.Doc;
+import com.internal.team.wiki.domain.doc.DocEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,8 +28,8 @@ public class DocCreateRequest {
         this.contents = contents;
     }
 
-    public Doc toEntity(final DocCreateRequest request) {
-        return Doc.builder()
+    public DocEntity toEntity(final DocCreateRequest request) {
+        return DocEntity.builder()
                 .writerName(request.getWriterName())
                 .title(request.getTitle())
                 .contents(request.getContents())

@@ -1,4 +1,4 @@
-package com.internal.team.wiki.exception;
+package com.internal.team.wiki.exception.doc;
 
 import com.internal.team.wiki.global.error.CustomException;
 import com.internal.team.wiki.global.error.ErrorCode;

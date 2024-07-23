@@ -1,7 +1,7 @@
-package com.internal.team.wiki.dto.response;
+package com.internal.team.wiki.dto.doc.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.internal.team.wiki.domain.entity.Doc;
+import com.internal.team.wiki.domain.doc.DocEntity;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -27,12 +27,12 @@ public class DocDetailResponse {
         this.updatedDateTime = updatedDateTime;
     }
 
-    public static DocDetailResponse of(final Doc saveDoc) {
+    public static DocDetailResponse of(final DocEntity saveDocEntity) {
         return DocDetailResponse.builder()
-                .writerName(saveDoc.getWriterName())
-                .title(saveDoc.getTitle().getValue())
-                .contents(saveDoc.getContents().getValue())
-                .updatedDateTime(saveDoc.getUpdatedDateTime())
+                .writerName(saveDocEntity.getWriterName())
+                .title(saveDocEntity.getTitle().getValue())
+                .contents(saveDocEntity.getContents().getValue())
+                .updatedDateTime(saveDocEntity.getUpdatedDateTime())
                 .build();
     }
 }

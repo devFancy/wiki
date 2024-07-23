@@ -1,9 +1,9 @@
-package com.internal.team.wiki.controller;
+package com.internal.team.wiki.controller.doc;
 
-import com.internal.team.wiki.dto.request.DocCreateRequest;
-import com.internal.team.wiki.dto.request.DocUpdateRequest;
-import com.internal.team.wiki.dto.response.DocDetailResponse;
-import com.internal.team.wiki.dto.response.DocsResponse;
+import com.internal.team.wiki.dto.doc.request.DocCreateRequest;
+import com.internal.team.wiki.dto.doc.request.DocUpdateRequest;
+import com.internal.team.wiki.dto.doc.response.DocDetailResponse;
+import com.internal.team.wiki.dto.doc.response.DocsResponse;
 import com.internal.team.wiki.global.api.ApiResultResponse;
 import com.internal.team.wiki.service.DocService;
 import org.springframework.http.HttpStatus;

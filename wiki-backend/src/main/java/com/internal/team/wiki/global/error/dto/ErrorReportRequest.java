@@ -1,4 +1,4 @@
-package com.internal.team.wiki.global.dto;
+package com.internal.team.wiki.global.error.dto;
 
 import javax.servlet.http.HttpServletRequest;
 

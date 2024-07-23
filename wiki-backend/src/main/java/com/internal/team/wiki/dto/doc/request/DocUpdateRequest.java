@@ -1,4 +1,4 @@
-package com.internal.team.wiki.dto.request;
+package com.internal.team.wiki.dto.doc.request;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package com.internal.team.wiki.dto.response;
+package com.internal.team.wiki.dto.doc.response;
 
-import com.internal.team.wiki.domain.entity.Doc;
+import com.internal.team.wiki.domain.doc.DocEntity;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -17,10 +17,10 @@ public class DocResponse {
         this.contents = contents;
     }
 
-    public static DocResponse from(final Doc doc) {
+    public static DocResponse from(final DocEntity docEntity) {
         return DocResponse.builder()
-                .title(doc.getTitle().getValue())
-                .contents(doc.getContents().getValue())
+                .title(docEntity.getTitle().getValue())
+                .contents(docEntity.getContents().getValue())
                 .build();
     }
 }

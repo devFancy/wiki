@@ -3,7 +3,7 @@ package com.internal.team.wiki.global.api;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.internal.team.wiki.global.dto.ErrorResponse;
+import com.internal.team.wiki.global.error.dto.ErrorResponse;
 
 import java.io.IOException;
 import java.util.Map;

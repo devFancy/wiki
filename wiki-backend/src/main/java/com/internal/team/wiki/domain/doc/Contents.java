@@ -1,6 +1,6 @@
-package com.internal.team.wiki.domain;
+package com.internal.team.wiki.domain.doc;
 
-import com.internal.team.wiki.exception.InvalidContentException;
+import com.internal.team.wiki.exception.doc.InvalidContentException;
 import lombok.Getter;
 
 import javax.persistence.Column;

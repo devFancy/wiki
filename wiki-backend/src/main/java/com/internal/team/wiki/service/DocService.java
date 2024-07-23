@@ -1,12 +1,12 @@
 package com.internal.team.wiki.service;
 
 
-import com.internal.team.wiki.domain.entity.Doc;
-import com.internal.team.wiki.dto.request.DocCreateRequest;
-import com.internal.team.wiki.dto.request.DocUpdateRequest;
-import com.internal.team.wiki.dto.response.DocDetailResponse;
-import com.internal.team.wiki.dto.response.DocsResponse;
-import com.internal.team.wiki.exception.NotFoundDocException;
+import com.internal.team.wiki.domain.doc.DocEntity;
+import com.internal.team.wiki.dto.doc.request.DocCreateRequest;
+import com.internal.team.wiki.dto.doc.request.DocUpdateRequest;
+import com.internal.team.wiki.dto.doc.response.DocDetailResponse;
+import com.internal.team.wiki.dto.doc.response.DocsResponse;
+import com.internal.team.wiki.exception.doc.NotFoundDocException;
 import com.internal.team.wiki.repository.DocRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,40 +25,40 @@ public class DocService {
 
     @Transactional
     public DocDetailResponse create(final DocCreateRequest request) {
-        Doc saveDoc = request.toEntity(request);
-        docRepository.save(saveDoc);
-        return DocDetailResponse.of(saveDoc);
+        DocEntity saveDocEntity = request.toEntity(request);
+        docRepository.save(saveDocEntity);
+        return DocDetailResponse.of(saveDocEntity);
     }
 
     public DocDetailResponse findOne(final Long docId) {
-        Doc doc = docRepository.findById(docId)
+        DocEntity docEntity = docRepository.findById(docId)
                 .orElseThrow(() -> new NotFoundDocException());
-        return DocDetailResponse.of(doc);
+        return DocDetailResponse.of(docEntity);
     }
 
     public DocsResponse findAll() {
-        List<Doc> docs = docRepository.findAllByOrderByCreatedDateTimeDesc();
-        return DocsResponse.of(docs);
+        List<DocEntity> docEntities = docRepository.findAllByOrderByCreatedDateTimeDesc();
+        return DocsResponse.of(docEntities);
     }
 
     @Transactional
     public DocDetailResponse update(final Long docId, final DocUpdateRequest request) {
-        Doc doc = findDoc(docId);
-        doc.change(request.getTitle(), request.getContents());
-        return DocDetailResponse.of(doc);
+        DocEntity docEntity = findDoc(docId);
+        docEntity.change(request.getTitle(), request.getContents());
+        return DocDetailResponse.of(docEntity);
     }
 
-    private Doc findDoc(final Long docId) {
-        List<Doc> docs = docRepository.findByDocsId(docId);
-        if(docs.isEmpty()) {
+    private DocEntity findDoc(final Long docId) {
+        List<DocEntity> docEntities = docRepository.findByDocsId(docId);
+        if(docEntities.isEmpty()) {
             throw new NotFoundDocException();
         }
-        return docs.get(0);
+        return docEntities.get(0);
     }
 
     @Transactional
     public void delete(final Long docId) {
-        Doc doc = findDoc(docId);
-        docRepository.delete(doc);
+        DocEntity docEntity = findDoc(docId);
+        docRepository.delete(docEntity);
     }
 }

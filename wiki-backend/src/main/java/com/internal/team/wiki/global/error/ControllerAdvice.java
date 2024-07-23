@@ -1,8 +1,8 @@
 package com.internal.team.wiki.global.error;
 
 import com.internal.team.wiki.global.api.ApiResultResponse;
-import com.internal.team.wiki.global.dto.ErrorReportRequest;
-import com.internal.team.wiki.global.dto.ErrorResponse;
+import com.internal.team.wiki.global.error.dto.ErrorReportRequest;
+import com.internal.team.wiki.global.error.dto.ErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
