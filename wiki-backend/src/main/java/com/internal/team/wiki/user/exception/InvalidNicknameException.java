@@ -8,4 +8,8 @@ public class InvalidNicknameException extends RuntimeException {
     public InvalidNicknameException() {
         super(MESSAGE);
     }
+
+    public InvalidNicknameException(String message) {
+        super(message);
+    }
 }

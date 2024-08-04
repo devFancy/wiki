@@ -9,4 +9,8 @@ public class InvalidUsernameException extends RuntimeException {
     public InvalidUsernameException() {
         super(MESSAGE);
     }
+
+    public InvalidUsernameException(String message) {
+        super(message);
+    }
 }

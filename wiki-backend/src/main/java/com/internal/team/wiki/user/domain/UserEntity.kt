@@ -1,6 +1,9 @@
 package com.internal.team.wiki.user.domain
 
 import com.internal.team.wiki.global.BaseEntityTime
+import com.internal.team.wiki.user.exception.InvalidNicknameException
+import com.internal.team.wiki.user.exception.InvalidPasswordFormatException
+import com.internal.team.wiki.user.exception.InvalidUsernameException
 import javax.persistence.*
 
 @Table(name ="users")
@@ -21,15 +24,18 @@ class UserEntity (
     var password: Password,
 
     @Enumerated
-    var roleType: RoleType = RoleType.USER
+    val roleType: RoleType = RoleType.USER
 ) : BaseEntityTime() {
 
     init {
         if (username.value.isBlank()) {
-            throw IllegalArgumentException("이름을 비어있을 수 없습니다.")
+            throw InvalidUsernameException("이름은 비어있을 수 없습니다.")
+        }
+        if (nickname.value.isBlank()) {
+            throw InvalidNicknameException("닉네임은 비어있을 수 없습니다.")
         }
         if (password.value.isBlank()) {
-            throw IllegalArgumentException("이메일은 비어있을 수 없습니다.")
+            throw InvalidPasswordFormatException("이메일은 비어있을 수 없습니다.")
         }
     }
 }
