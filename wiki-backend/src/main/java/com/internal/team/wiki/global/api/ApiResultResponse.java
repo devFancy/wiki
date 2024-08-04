@@ -1,7 +1,7 @@
 package com.internal.team.wiki.global.api;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.internal.team.wiki.global.dto.ErrorResponse;
+import com.internal.team.wiki.global.error.dto.ErrorResponse;
 import lombok.Getter;
 
 import java.util.HashMap;
