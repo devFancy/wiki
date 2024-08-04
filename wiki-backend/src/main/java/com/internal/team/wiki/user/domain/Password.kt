@@ -13,22 +13,22 @@ class Password (
     var value: String
 ) {
 
-    init{
-        validate(value)
-    }
-
-    fun of(hashing: HashingI, password: String): Password {
-        validate(password)
-        return Password(hashing.generateSHA256Hash(password))
-    }
-
-    private fun validate(value: String) {
-        if(value.isBlank() || !PATTERN.matcher(value).matches()) {
-            throw InvalidPasswordFormatException("비밀번호를 입력해 주세요.")
-        }
-    }
-
     companion object {
-        val PATTERN: Pattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,20}$")
+        val PATTERN: Pattern = Pattern.compile("[A-Za-z0-9]{4,20}")
+
+        fun of(hashing: HashingI, password: String): Password {
+            validateStatic(password)
+            return Password(hashing.generateSHA256Hash(password))
+        }
+
+        private fun validateStatic(value: String) {
+            if (value.isBlank()) {
+                throw InvalidPasswordFormatException("비밀번호를 입력해 주세요.")
+            }
+
+            if (!PATTERN.matcher(value).matches()) {
+                throw InvalidPasswordFormatException("비밀번호는 영문자, 숫자를 포함한 4자에서 20자 사이여야 합니다.")
+            }
+        }
     }
 }

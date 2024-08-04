@@ -16,19 +16,14 @@ class Username (
         validate(value)
     }
 
-    fun of(hashing: HashingI, value: String): Username {
-        validate(value)
-        return Username(hashing.generateSHA256Hash(value))
-    }
-
     private fun validate(value: String) {
         if(value.isBlank()|| !PATTERN.matcher(value).matches()) {
-            throw InvalidUsernameException()
+            throw InvalidUsernameException("유효하지 않은 사용자 이름입니다.")
         }
     }
 
     companion object {
-        val PATTERN: Pattern = Pattern.compile("^[0-9a-zA-Z]{4,16}$")
+        val PATTERN: Pattern = Pattern.compile("^(?=.*[a-zA-Z])[a-zA-Z0-9]{4,16}$")
     }
 
 }

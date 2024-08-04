@@ -10,10 +10,6 @@ import javax.persistence.*
 @Entity
 class UserEntity (
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
-
     @Embedded
     var username: Username,
 
@@ -23,19 +19,11 @@ class UserEntity (
     @Embedded
     var password: Password,
 
-    @Enumerated
-    val roleType: RoleType = RoleType.USER
-) : BaseEntityTime() {
+    @Enumerated(EnumType.STRING)
+    val roleType: RoleType = RoleType.USER,
 
-    init {
-        if (username.value.isBlank()) {
-            throw InvalidUsernameException("이름은 비어있을 수 없습니다.")
-        }
-        if (nickname.value.isBlank()) {
-            throw InvalidNicknameException("닉네임은 비어있을 수 없습니다.")
-        }
-        if (password.value.isBlank()) {
-            throw InvalidPasswordFormatException("이메일은 비어있을 수 없습니다.")
-        }
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null
+) : BaseEntityTime() {
 }
