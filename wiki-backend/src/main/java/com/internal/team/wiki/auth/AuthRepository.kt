@@ -1,9 +1,9 @@
 package com.internal.team.wiki.auth
 
-import com.internal.team.wiki.auth.domain.AuthEntityToken
+import com.internal.team.wiki.auth.domain.AuthTokenEntity
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface AuthRepository : JpaRepository<AuthEntityToken, Long> {
+interface AuthRepository : JpaRepository<AuthTokenEntity, Long> {
 
-    fun deleteAllByUserId(userId: Long?)
+    fun deleteAllById(authTokenId: Long?)
 }

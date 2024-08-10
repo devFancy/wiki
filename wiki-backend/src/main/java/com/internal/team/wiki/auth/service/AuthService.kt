@@ -34,6 +34,6 @@ class AuthService (
 
     @Transactional
     fun logout(id: Long?) {
-        authRepository.deleteAllByUserId(id)
+        authRepository.deleteAllById(id)
     }
 }
