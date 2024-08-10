@@ -1,9 +1,6 @@
 package com.internal.team.wiki.user.domain
 
-import com.internal.team.wiki.global.BaseEntityTime
-import com.internal.team.wiki.user.exception.InvalidNicknameException
-import com.internal.team.wiki.user.exception.InvalidPasswordFormatException
-import com.internal.team.wiki.user.exception.InvalidUsernameException
+import com.internal.team.wiki.global.BaseTimeEntity
 import javax.persistence.*
 
 @Table(name ="users")
@@ -25,5 +22,5 @@ class UserEntity (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null
-) : BaseEntityTime() {
+) : BaseTimeEntity() {
 }

@@ -1,7 +1,6 @@
 package com.internal.team.wiki.user.domain
 
-import com.internal.team.wiki.user.domain.hashing.HashingI
-import com.internal.team.wiki.user.exception.InvalidUsernameException
+import com.internal.team.wiki.exception.InvalidUsernameException
 import java.util.regex.Pattern
 import javax.persistence.Column
 import javax.persistence.Embeddable

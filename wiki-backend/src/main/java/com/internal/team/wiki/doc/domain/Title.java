@@ -1,6 +1,6 @@
 package com.internal.team.wiki.doc.domain;
 
-import com.internal.team.wiki.doc.exception.InvalidTitleException;
+import com.internal.team.wiki.exception.InvalidTitleException;
 import lombok.Getter;
 
 import javax.persistence.Column;

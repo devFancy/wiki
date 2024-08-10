@@ -6,7 +6,7 @@ import com.internal.team.wiki.doc.dto.request.DocCreateRequest;
 import com.internal.team.wiki.doc.dto.request.DocUpdateRequest;
 import com.internal.team.wiki.doc.dto.response.DocDetailResponse;
 import com.internal.team.wiki.doc.dto.response.DocsResponse;
-import com.internal.team.wiki.doc.exception.NotFoundDocException;
+import com.internal.team.wiki.exception.NotFoundDocException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

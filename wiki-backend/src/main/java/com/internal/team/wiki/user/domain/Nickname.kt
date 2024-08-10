@@ -1,6 +1,6 @@
 package com.internal.team.wiki.user.domain
 
-import com.internal.team.wiki.user.exception.InvalidNicknameException
+import com.internal.team.wiki.exception.InvalidNicknameException
 import java.util.regex.Pattern
 import javax.persistence.Column
 import javax.persistence.Embeddable
