@@ -8,6 +8,7 @@ import com.internal.team.wiki.auth.dto.LoginUser
 import com.internal.team.wiki.global.hashing.Hashing
 import com.internal.team.wiki.exception.fail
 import com.internal.team.wiki.user.UserRepository
+import com.internal.team.wiki.user.domain.Password
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -21,8 +22,8 @@ class AuthService (
 ) {
     fun login(loginRequest: LoginRequest): LoginUser {
         val username: String = loginRequest.username
-        val password: String = hashing.generateSHA256Hash(loginRequest.password)
-        val user = userRepository.findByUsernameAndPassword(username, password)
+        val hashedPassword = Password.of(hashing, loginRequest.password).value
+        val user = userRepository.findByUsernameAndPassword(username, hashedPassword)
             ?: fail()
         return LoginUser(user.id)
     }
