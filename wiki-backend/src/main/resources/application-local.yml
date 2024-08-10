@@ -37,6 +37,13 @@ cors:
   allow-origin:
     urls: http://localhost:8080, http://localhost:3000
 
+security:
+  jwt:
+    token:
+      secret-key: wiki@dPtnfwjdasdkkasjdnvxcu32ad128znczSs2n42dbashdyasdbav2Clvyx9vsnasd
+      access:
+        expire-length : 3600000 #1시간
+
 # swagger
 springdoc:
   packages-to-scan: com.internal.team.wiki
