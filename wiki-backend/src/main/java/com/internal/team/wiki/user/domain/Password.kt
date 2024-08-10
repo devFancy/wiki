@@ -1,7 +1,7 @@
 package com.internal.team.wiki.user.domain
 
-import com.internal.team.wiki.user.domain.hashing.HashingI
-import com.internal.team.wiki.user.exception.InvalidPasswordFormatException
+import com.internal.team.wiki.global.hashing.Hashing
+import com.internal.team.wiki.exception.InvalidPasswordFormatException
 import java.util.regex.Pattern
 import javax.persistence.Column
 import javax.persistence.Embeddable
@@ -16,7 +16,7 @@ class Password (
     companion object {
         val PATTERN: Pattern = Pattern.compile("[A-Za-z0-9]{4,20}")
 
-        fun of(hashing: HashingI, password: String): Password {
+        fun of(hashing: Hashing, password: String): Password {
             validateStatic(password)
             return Password(hashing.generateSHA256Hash(password))
         }

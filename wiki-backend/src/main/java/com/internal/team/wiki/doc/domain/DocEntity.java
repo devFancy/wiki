@@ -1,6 +1,6 @@
 package com.internal.team.wiki.doc.domain;
 
-import com.internal.team.wiki.global.BaseEntityTime;
+import com.internal.team.wiki.global.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name ="docs")
 @Entity
-public class DocEntity extends BaseEntityTime {
+public class DocEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

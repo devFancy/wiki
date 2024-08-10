@@ -4,9 +4,8 @@ import com.internal.team.wiki.user.domain.Nickname
 import com.internal.team.wiki.user.domain.Password
 import com.internal.team.wiki.user.domain.UserEntity
 import com.internal.team.wiki.user.domain.Username
-import com.internal.team.wiki.user.domain.hashing.HashingI
 import com.internal.team.wiki.user.dto.UserSignupRequest
-import com.internal.team.wiki.user.exception.InvalidNicknameException
+import com.internal.team.wiki.exception.InvalidNicknameException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
