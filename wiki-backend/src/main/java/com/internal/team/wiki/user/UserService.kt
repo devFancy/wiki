@@ -6,13 +6,14 @@ import com.internal.team.wiki.user.domain.UserEntity
 import com.internal.team.wiki.user.domain.Username
 import com.internal.team.wiki.user.dto.UserSignupRequest
 import com.internal.team.wiki.exception.InvalidNicknameException
+import com.internal.team.wiki.global.hashing.Hashing
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UserService (
    private val userRepository: UserRepository,
-   private val hashingI: HashingI
+   private val hashing: Hashing
 ) {
 
    @Transactional
@@ -24,7 +25,7 @@ class UserService (
       val user = UserEntity(
          username = Username(request.username),
          nickname = Nickname(request.nickname),
-         password = Password.of(hashingI, request.password),
+         password = Password.of(hashing, request.password),
       )
       userRepository.save(user)
 

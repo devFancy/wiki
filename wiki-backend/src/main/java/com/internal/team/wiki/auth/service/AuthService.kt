@@ -31,4 +31,9 @@ class AuthService (
         val authAccessToken: AuthAccessToken = tokenCreator.createAuthToken(loginUser.id)
         return AccessTokenResponse(authAccessToken.accessToken)
     }
+
+    @Transactional
+    fun logout(id: Long?) {
+        authRepository.deleteAllById(id)
+    }
 }
