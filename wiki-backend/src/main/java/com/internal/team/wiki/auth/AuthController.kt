@@ -5,6 +5,7 @@ import com.internal.team.wiki.auth.dto.LoginRequest
 import com.internal.team.wiki.auth.dto.LoginUser
 import com.internal.team.wiki.auth.service.AuthService
 import com.internal.team.wiki.global.api.ApiResultResponse
+import com.internal.team.wiki.global.authentication.AuthenticationPrincipal
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping

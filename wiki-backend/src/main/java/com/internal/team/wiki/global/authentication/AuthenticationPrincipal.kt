@@ -1,4 +1,4 @@
-package com.internal.team.wiki.auth
+package com.internal.team.wiki.global.authentication
 
 
 @Target(AnnotationTarget.VALUE_PARAMETER)

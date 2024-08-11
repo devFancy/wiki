@@ -1,4 +1,4 @@
-package com.internal.team.wiki.auth
+package com.internal.team.wiki.global.authentication
 
 import com.internal.team.wiki.auth.dto.LoginUser
 import com.internal.team.wiki.auth.service.AuthService
