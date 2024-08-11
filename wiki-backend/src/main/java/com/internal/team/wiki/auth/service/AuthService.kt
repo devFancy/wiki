@@ -2,6 +2,7 @@ package com.internal.team.wiki.auth.service
 
 import com.internal.team.wiki.auth.AuthRepository
 import com.internal.team.wiki.auth.domain.AuthAccessToken
+import com.internal.team.wiki.auth.domain.AuthTokenEntity
 import com.internal.team.wiki.auth.dto.AccessTokenResponse
 import com.internal.team.wiki.auth.dto.LoginRequest
 import com.internal.team.wiki.auth.dto.LoginUser
@@ -26,12 +27,25 @@ class AuthService (
         val hashedPassword = Password.of(hashing, loginRequest.password).value
         val user = userRepository.findByUsernameAndPassword(username, hashedPassword)
             ?: fail()
-        return LoginUser(user.id)
+        return LoginUser(user.id!!)
     }
 
     fun generateAccessToken(loginUser: LoginUser): AccessTokenResponse {
         val authAccessToken: AuthAccessToken = tokenCreator.createAuthToken(loginUser.id)
-        return AccessTokenResponse(authAccessToken.accessToken)
+
+        // UserEntity를 조회합니다.
+        val userEntity = userRepository.findByUserId(loginUser.id)
+            .orElseThrow { NotFoundUserException("유저가 존재하지 않습니다.") }
+
+        // AuthTokenEntity를 생성하고 저장합니다.
+        val authTokenEntity = AuthTokenEntity(
+            userEntity = userEntity,
+            accessToken = authAccessToken.accessToken
+        )
+
+        authRepository.save(authTokenEntity)
+
+        return AccessTokenResponse(userEntity.id, authAccessToken.accessToken)
     }
 
     @Transactional
@@ -47,7 +61,7 @@ class AuthService (
 
     private fun validateExistByUserId(userId: Long) {
         if (!userRepository.existsByUserId(userId)) {
-            throw NotFoundUserException()
+            throw NotFoundUserException("유저가 존재하지 않습니다.")
         }
     }
 }

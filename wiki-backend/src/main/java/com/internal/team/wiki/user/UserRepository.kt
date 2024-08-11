@@ -1,10 +1,10 @@
 package com.internal.team.wiki.user
 
-import com.internal.team.wiki.exception.NotFoundUserException
 import com.internal.team.wiki.user.domain.UserEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
+import java.util.*
 
 interface UserRepository : JpaRepository<UserEntity, Long> {
 
@@ -19,4 +19,7 @@ interface UserRepository : JpaRepository<UserEntity, Long> {
 
     @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM UserEntity u WHERE u.id = :userId")
     fun existsByUserId(@Param("userId") userId: Long): Boolean
+
+    @Query("SELECT u FROM UserEntity u WHERE u.id = :userId")
+    fun findByUserId(@Param("userId") userId: Long): Optional<UserEntity>
 }
