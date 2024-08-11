@@ -16,7 +16,7 @@ class JwtTokenProvider(
 ) : TokenProvider {
 
     private val key: SecretKey = Keys.hmacShaKeyFor(jwtProperties.secretKey.toByteArray(Charsets.UTF_8))
-    private val accessTokenValidityInMilliseconds = jwtProperties.accessExpireLength
+    private val accessTokenValidityInMilliseconds = jwtProperties.access.expireLength
 
     override fun createAccessToken(payload: String): String {
         return createToken(payload, accessTokenValidityInMilliseconds)

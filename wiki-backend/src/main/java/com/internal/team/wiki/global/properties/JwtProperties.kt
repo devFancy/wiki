@@ -7,5 +7,9 @@ import org.springframework.context.annotation.Configuration
 @ConfigurationProperties(prefix = "security.jwt.token")
 class JwtProperties {
     lateinit var secretKey: String
-    var accessExpireLength: Long = 0
+    var access: Access = Access()
+
+    class Access {
+        var expireLength: Long = 0
+    }
 }
