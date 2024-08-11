@@ -18,7 +18,7 @@ class Contents (
     }
 
     private fun validate(value: String) {
-        require(value.isBlank()) {
+        require(value.isNotBlank()) {
             throw InvalidContentException()
         }
     }
