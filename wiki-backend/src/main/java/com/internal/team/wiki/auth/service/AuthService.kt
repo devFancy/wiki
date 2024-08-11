@@ -5,6 +5,7 @@ import com.internal.team.wiki.auth.domain.AuthAccessToken
 import com.internal.team.wiki.auth.dto.AccessTokenResponse
 import com.internal.team.wiki.auth.dto.LoginRequest
 import com.internal.team.wiki.auth.dto.LoginUser
+import com.internal.team.wiki.exception.NotFoundUserException
 import com.internal.team.wiki.global.hashing.Hashing
 import com.internal.team.wiki.exception.fail
 import com.internal.team.wiki.user.UserRepository
@@ -39,8 +40,14 @@ class AuthService (
     }
 
     fun extractUserId(accessToken: String) : Long {
-        val userId = tokenCreator.extractPayLoad(accessToken);
-        userRepository.validateExistById(userId)
+        val userId = tokenCreator.extractPayLoad(accessToken)
+        validateExistByUserId(userId)
         return userId
+    }
+
+    private fun validateExistByUserId(userId: Long) {
+        if (!userRepository.existsByUserId(userId)) {
+            throw NotFoundUserException()
+        }
     }
 }
