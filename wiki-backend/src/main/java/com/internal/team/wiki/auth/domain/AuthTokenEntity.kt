@@ -6,7 +6,7 @@ import javax.persistence.*
 
 @Table(name = "auth_tokens")
 @Entity
-class AuthTokenEntity (
+class AuthTokenEntity(
 
     @OneToOne(fetch = FetchType.LAZY)
     val userEntity: UserEntity,
