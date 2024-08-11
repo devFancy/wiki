@@ -17,9 +17,6 @@ interface UserRepository : JpaRepository<UserEntity, Long> {
         @Param("password") password: String
     ): UserEntity?
 
-    fun validateExistById(userId: Long) {
-        if (!existsById(userId)) {
-            throw NotFoundUserException()
-        }
-    }
+    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM UserEntity u WHERE u.id = :userId")
+    fun existsByUserId(@Param("userId") userId: Long): Boolean
 }
