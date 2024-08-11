@@ -33,7 +33,7 @@ class DocService(
     fun findOne(userId: Long, docId: Long): DocDetailResponse {
         getUserById(userId)
 
-        val doc = docRepository.findById(docId).get() ?: throw NotFoundDocException()
+        val doc = docRepository.findById(docId).get()
         return DocDetailResponse.of(doc)
     }
 
@@ -60,8 +60,7 @@ class DocService(
         docRepository.delete(doc)
     }
 
-    private fun validateUser(userId: Long?) {
-        requireNotNull(userId) { "User ID must not be null" }
+    private fun validateUser(userId: Long) {
         if (!existUser(userId)) {
             throw NotFoundUserException("회원 가입해야 글을 작성하실 수 있습니다.")
         }
@@ -84,7 +83,7 @@ class DocService(
             .orElseThrow { NotFoundUserException("유저가 존재하지 않습니다.") }
     }
 
-    private fun validateDocByUser(userId: Long?, doc: DocEntity) {
+    private fun validateDocByUser(userId: Long, doc: DocEntity) {
         if (!doc.isUser(userId)) {
             throw AuthorizationException()
         }

@@ -21,5 +21,5 @@ interface UserRepository : JpaRepository<UserEntity, Long> {
     fun existsByUserId(@Param("userId") userId: Long): Boolean
 
     @Query("SELECT u FROM UserEntity u WHERE u.id = :userId")
-    fun findByUserId(@Param("userId") userId: Long): Optional<UserEntity>
+    fun findByUserId(@Param("userId") userId: Long?): Optional<UserEntity>
 }
