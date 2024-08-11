@@ -13,6 +13,8 @@ public enum ErrorCode {
 
     // User
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "USER_NOT_FOUND", "존재하지 않는 회원입니다."),
+    USER_USERNAME_INVALID(HttpStatus.BAD_REQUEST, "USER_USERNAME_INVALID", "잘못된 아이디 형식입니다."),
+    USER_PASSWORD_INVALID(HttpStatus.BAD_REQUEST, "USER_PASSWORD_INVALID", "올바른 비밀번호 형식이 아닙니다."),
     USER_NICKNAME_INVALID(HttpStatus.BAD_REQUEST, "USER_NICKNAME_INVALID", "잘못된 닉네임 형식입니다."),
 
     // Docs
