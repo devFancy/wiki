@@ -2,7 +2,9 @@ package com.internal.team.wiki.global.error;
 
 import com.internal.team.wiki.exception.AuthorizationException;
 import com.internal.team.wiki.exception.EmptyAuthorizationHeaderException;
+import com.internal.team.wiki.exception.InvalidContentException;
 import com.internal.team.wiki.exception.InvalidNicknameException;
+import com.internal.team.wiki.exception.InvalidTitleException;
 import com.internal.team.wiki.exception.InvalidTokenException;
 import com.internal.team.wiki.exception.NotFoundDocException;
 import com.internal.team.wiki.exception.NotFoundUserException;
@@ -51,7 +53,8 @@ public class ControllerAdvice {
 
     @ExceptionHandler({
             InvalidNicknameException.class,
-
+            InvalidContentException.class,
+            InvalidTitleException.class,
     })
     public ResponseEntity<ApiResultResponse<ErrorResponse>> handleInvalidException(final CustomException e) {
         ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode(), e.getMessage());
