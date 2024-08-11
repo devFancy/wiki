@@ -6,6 +6,14 @@ import org.springframework.http.HttpStatus;
 @Getter
 public enum ErrorCode {
 
+    // Auth
+    Empty_Authorization_Header_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "Empty_Authorization_Header_UNAUTHORIZED", "Header에 Authorization이 존재하지 않습니다."),
+    InvalidToken_UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "InvalidToken_UNAUTHORIZED", "유효하지 않은 토큰입니다."),
+
+    // User
+    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "USER_NOT_FOUND", "존재하지 않는 회원입니다."),
+
+
     // Docs
     DOCUMENT_NOT_FOUND(HttpStatus.NOT_FOUND, "DOCUMENT_NOT_FOUND", "The document was not found."),
     TITLE_INVALID(HttpStatus.BAD_REQUEST, "TITLE_INVALID", "The title is invalid"),
