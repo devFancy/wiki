@@ -11,8 +11,8 @@ class AuthTokenEntity(
     @OneToOne(fetch = FetchType.LAZY)
     val userEntity: UserEntity,
 
-    @Column(name = "refresh_token")
-    val refreshToken: String,
+    @Column(name = "access_token")
+    val accessToken: String,
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

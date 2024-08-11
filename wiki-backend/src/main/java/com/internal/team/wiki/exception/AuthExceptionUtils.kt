@@ -7,4 +7,6 @@ class EmptyAuthorizationHeaderException : CustomException(ErrorCode.Empty_Author
 
 class InvalidTokenException(message: String) : CustomException(ErrorCode.InvalidToken_UNAUTHORIZED, message)
 
-class NotFoundUserException : CustomException(ErrorCode.USER_NOT_FOUND)
+class NotFoundUserException(message: String) : CustomException(ErrorCode.USER_NOT_FOUND, message)
+
+class AuthorizationException : CustomException(ErrorCode.AUTHORIZATION_UNAUTHORIZED)

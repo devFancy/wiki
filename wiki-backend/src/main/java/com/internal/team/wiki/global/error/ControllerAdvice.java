@@ -1,6 +1,10 @@
 package com.internal.team.wiki.global.error;
 
+import com.internal.team.wiki.exception.AuthorizationException;
 import com.internal.team.wiki.exception.EmptyAuthorizationHeaderException;
+import com.internal.team.wiki.exception.InvalidContentException;
+import com.internal.team.wiki.exception.InvalidNicknameException;
+import com.internal.team.wiki.exception.InvalidTitleException;
 import com.internal.team.wiki.exception.InvalidTokenException;
 import com.internal.team.wiki.exception.NotFoundDocException;
 import com.internal.team.wiki.exception.NotFoundUserException;
@@ -47,20 +51,21 @@ public class ControllerAdvice {
         return new ResponseEntity<>(apiResultResponse, HttpStatus.BAD_REQUEST);
     }
 
-    /**
     @ExceptionHandler({
-
+            InvalidNicknameException.class,
+            InvalidContentException.class,
+            InvalidTitleException.class,
     })
     public ResponseEntity<ApiResultResponse<ErrorResponse>> handleInvalidException(final CustomException e) {
         ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode(), e.getMessage());
         ApiResultResponse<ErrorResponse> apiResultResponse = ApiResultResponse.failure(errorResponse, ERROR);
         return new ResponseEntity<>(apiResultResponse, HttpStatus.BAD_REQUEST);
     }
-     **/
 
     @ExceptionHandler({
             EmptyAuthorizationHeaderException.class,
-            InvalidTokenException.class
+            InvalidTokenException.class,
+            AuthorizationException.class
     })
     public ResponseEntity<ApiResultResponse<ErrorResponse>> handleUnauthorizedException(final CustomException e) {
         ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode() ,e.getMessage());
