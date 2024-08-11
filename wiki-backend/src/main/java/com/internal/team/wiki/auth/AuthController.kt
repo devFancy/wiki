@@ -8,7 +8,6 @@ import com.internal.team.wiki.global.api.ApiResultResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -29,7 +28,7 @@ class AuthController (
     }
 
     @DeleteMapping("/logout")
-    fun logout(loginUser: LoginUser) : ResponseEntity<ApiResultResponse<Void>> {
+    fun logout(@AuthenticationPrincipal loginUser: LoginUser) : ResponseEntity<ApiResultResponse<Void>> {
         authService.logout(loginUser.id)
         val response = ApiResultResponse.successVoid("Logout successful")
         return ResponseEntity(response, HttpStatus.NO_CONTENT)

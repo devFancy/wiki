@@ -1,5 +1,9 @@
 package com.internal.team.wiki.global.error;
 
+import com.internal.team.wiki.exception.EmptyAuthorizationHeaderException;
+import com.internal.team.wiki.exception.InvalidTokenException;
+import com.internal.team.wiki.exception.NotFoundDocException;
+import com.internal.team.wiki.exception.NotFoundUserException;
 import com.internal.team.wiki.global.api.ApiResultResponse;
 import com.internal.team.wiki.global.error.dto.ErrorReportRequest;
 import com.internal.team.wiki.global.error.dto.ErrorResponse;
@@ -52,8 +56,21 @@ public class ControllerAdvice {
         ApiResultResponse<ErrorResponse> apiResultResponse = ApiResultResponse.failure(errorResponse, ERROR);
         return new ResponseEntity<>(apiResultResponse, HttpStatus.BAD_REQUEST);
     }
+     **/
 
     @ExceptionHandler({
+            EmptyAuthorizationHeaderException.class,
+            InvalidTokenException.class
+    })
+    public ResponseEntity<ApiResultResponse<ErrorResponse>> handleUnauthorizedException(final CustomException e) {
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode() ,e.getMessage());
+        ApiResultResponse<ErrorResponse> apiResultResponse = ApiResultResponse.failure(errorResponse, ERROR);
+        return new ResponseEntity<>(apiResultResponse, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler({
+            NotFoundUserException.class,
+            NotFoundDocException.class
 
     })
     public ResponseEntity<ApiResultResponse<ErrorResponse>> handleNotFoundException(final CustomException e) {
@@ -61,7 +78,6 @@ public class ControllerAdvice {
         ApiResultResponse<ErrorResponse> apiResultResponse = ApiResultResponse.failure(errorResponse, ERROR);
         return new ResponseEntity<>(apiResultResponse, HttpStatus.NOT_FOUND);
     }
-    **/
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ApiResultResponse<ErrorResponse>> handleMethodNotAllowedException(final CustomException e) {

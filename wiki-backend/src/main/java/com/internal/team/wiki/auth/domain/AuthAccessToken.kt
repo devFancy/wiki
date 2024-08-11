@@ -1,6 +1,6 @@
 package com.internal.team.wiki.auth.domain
 
-class AuthAccessToken (
+class AuthAccessToken(
     val accessToken: String,
 ) {
 }

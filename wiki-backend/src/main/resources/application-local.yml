@@ -42,7 +42,7 @@ security:
     token:
       secret-key: wiki@dPtnfwjdasdkkasjdnvxcu32ad128znczSs2n42dbashdyasdbav2Clvyx9vsnasd
       access:
-        expire-length : 3600000 #1시간
+        expire-length : 86400000 # 24시간, / 3600000(1시간)
 
 # swagger
 springdoc:
