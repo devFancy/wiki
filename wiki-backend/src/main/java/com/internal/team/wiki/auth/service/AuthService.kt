@@ -37,4 +37,10 @@ class AuthService (
     fun logout(id: Long?) {
         authRepository.deleteAllById(id)
     }
+
+    fun extractUserId(accessToken: String) : Long {
+        val userId = tokenCreator.extractPayLoad(accessToken);
+        userRepository.validateExistById(userId)
+        return userId
+    }
 }

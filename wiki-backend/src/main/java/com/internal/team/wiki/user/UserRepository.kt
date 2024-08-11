@@ -1,5 +1,6 @@
 package com.internal.team.wiki.user
 
+import com.internal.team.wiki.exception.NotFoundUserException
 import com.internal.team.wiki.user.domain.UserEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
@@ -15,4 +16,10 @@ interface UserRepository : JpaRepository<UserEntity, Long> {
         @Param("username") username: String,
         @Param("password") password: String
     ): UserEntity?
+
+    fun validateExistById(userId: Long) {
+        if (!existsById(userId)) {
+            throw NotFoundUserException()
+        }
+    }
 }
