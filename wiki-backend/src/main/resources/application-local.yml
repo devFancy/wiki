@@ -11,14 +11,14 @@ spring:
       enabled: true
 
    # h2
-    datasource:
-      url: jdbc:h2:mem:wiki_local;DB_CLOSE_DELAY=-1 # [1] jdbc:h2:~/wiki_local -> [2] jdbc:h2:tcp://localhost/~/wiki_local
-      driver-class-name: org.h2.Driver
-      username: sa
-      password:
-      h2:
-        console:
-          enabled: true
+  datasource:
+    url: 'jdbc:h2:mem:wiki_local'
+    driver-class-name: org.h2.Driver # localhost:8080/h2-console 접속
+    username: 'user'
+    password: ''
+  h2:
+    console:
+      enabled: true
 
   jpa:
     open-in-view: true
@@ -43,17 +43,3 @@ security:
       secret-key: wiki@dPtnfwjdasdkkasjdnvxcu32ad128znczSs2n42dbashdyasdbav2Clvyx9vsnasd
       access:
         expire-length : 86400000 # 24시간, / 3600000(1시간)
-
-# swagger
-springdoc:
-  packages-to-scan: com.internal.team.wiki
-  default-consumes-media-type: application/json;charset=UTF-8
-  default-produces-media-type: application/json;charset=UTF-8
-  swagger-ui:
-    path:
-    tags-sorter: alpha
-    operations-sorter: alpha
-  api-docs:
-    path: /api-docs/json
-    groups:
-      enabled: true
