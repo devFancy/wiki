@@ -16,7 +16,7 @@ allOpen {
 }
 
 group = 'com.internal.team.wiki'
-version = '1.0.0-SNAPSHOT'
+version = '1.1.0-SNAPSHOT'
 
 java {
     sourceCompatibility = '11'
@@ -35,6 +35,10 @@ dependencies {
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
     implementation 'org.springframework.boot:spring-boot-starter-logging'
+
+    // security
+    testImplementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
 
     // kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8" // kotlin (2)
