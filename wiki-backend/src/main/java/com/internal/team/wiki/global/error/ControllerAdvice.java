@@ -4,8 +4,10 @@ import com.internal.team.wiki.exception.AuthorizationException;
 import com.internal.team.wiki.exception.EmptyAuthorizationHeaderException;
 import com.internal.team.wiki.exception.InvalidContentException;
 import com.internal.team.wiki.exception.InvalidNicknameException;
+import com.internal.team.wiki.exception.InvalidPasswordFormatException;
 import com.internal.team.wiki.exception.InvalidTitleException;
 import com.internal.team.wiki.exception.InvalidTokenException;
+import com.internal.team.wiki.exception.InvalidUsernameException;
 import com.internal.team.wiki.exception.NotFoundDocException;
 import com.internal.team.wiki.exception.NotFoundUserException;
 import com.internal.team.wiki.global.api.ApiResultResponse;
@@ -55,6 +57,9 @@ public class ControllerAdvice {
             InvalidNicknameException.class,
             InvalidContentException.class,
             InvalidTitleException.class,
+            InvalidUsernameException.class,
+            InvalidPasswordFormatException.class,
+            InvalidNicknameException.class,
     })
     public ResponseEntity<ApiResultResponse<ErrorResponse>> handleInvalidException(final CustomException e) {
         ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode(), e.getMessage());
