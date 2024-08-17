@@ -1,0 +1,45 @@
+# application-test.yml
+# spring
+spring:
+  application:
+    name: wiki_test
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 30MB
+      enabled: true
+
+    # h2
+  datasource:
+    url: 'jdbc:h2:mem:wiki_test'
+    driver-class-name: org.h2.Driver # localhost:8080/h2-console 접속
+    username: 'user'
+    password: ''
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: Asia/Seoul
+    show-sql: true
+    defer-datasource-initialization: true
+
+# cors
+cors:
+  allow-origin:
+    urls: http://localhost:8080, http://localhost:3000
+
+security:
+  jwt:
+    token:
+      secret-key: wiki@dPtnfwjdasdkkasjdnvxcu32ad128znczSs2n42dbashdyasdbav2Clvyx9vsnasd
+      access:
+        expire-length : 86400000 # 24시간, / 3600000(1시간)
