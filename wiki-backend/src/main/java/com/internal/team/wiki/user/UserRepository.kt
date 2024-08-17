@@ -11,8 +11,10 @@ interface UserRepository : JpaRepository<UserEntity, Long> {
 
     fun existsByNicknameValue(nickname: String): Boolean
 
-    @Query("SELECT u FROM UserEntity u" +
-            " WHERE u.username.value = :username AND u.password.value = :password")
+    @Query(
+        "SELECT u FROM UserEntity u" +
+                " WHERE u.username.value = :username AND u.password.value = :password"
+    )
     fun findByUsernameAndPassword(
         @Param("username") username: String,
         @Param("password") password: String

@@ -4,7 +4,7 @@ import com.internal.team.wiki.auth.domain.AuthAccessToken
 
 interface TokenCreator {
 
-    fun createAuthToken(userId: Long?) : AuthAccessToken
+    fun createAuthToken(userId: Long?): AuthAccessToken
 
     fun extractPayLoad(accessToken: String): Long
 }

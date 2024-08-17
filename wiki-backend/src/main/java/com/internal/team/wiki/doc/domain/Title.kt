@@ -1,13 +1,12 @@
 package com.internal.team.wiki.doc.domain
 
 import com.internal.team.wiki.exception.InvalidTitleException
-import lombok.Getter
 import javax.persistence.Column
 import javax.persistence.Embeddable
 
 
 @Embeddable
-class Title (
+class Title(
 
     @Column(name = "title", nullable = false)
     val value: String,

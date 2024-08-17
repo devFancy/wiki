@@ -8,20 +8,16 @@ import com.internal.team.wiki.global.api.ApiResultResponse
 import com.internal.team.wiki.global.authentication.AuthenticationPrincipal
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RequestMapping("/auth")
 @RestController
-class AuthController (
+class AuthController(
     private val authService: AuthService,
 ) {
 
     @PostMapping("/login")
-    fun login(@RequestBody loginRequest: LoginRequest) : ResponseEntity<ApiResultResponse<AccessTokenResponse>> {
+    fun login(@RequestBody loginRequest: LoginRequest): ResponseEntity<ApiResultResponse<AccessTokenResponse>> {
         val loginUser: LoginUser = authService.login(loginRequest)
         val response: AccessTokenResponse = authService.generateAccessToken(loginUser)
         val apiResponse = ApiResultResponse.success(response, "auths")
@@ -29,7 +25,7 @@ class AuthController (
     }
 
     @DeleteMapping("/logout")
-    fun logout(@AuthenticationPrincipal loginUser: LoginUser) : ResponseEntity<ApiResultResponse<Void>> {
+    fun logout(@AuthenticationPrincipal loginUser: LoginUser): ResponseEntity<ApiResultResponse<Void>> {
         authService.logout(loginUser.id)
         val response = ApiResultResponse.successVoid("Logout successful")
         return ResponseEntity(response, HttpStatus.NO_CONTENT)

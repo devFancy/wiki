@@ -2,6 +2,8 @@ package com.internal.team.wiki.global.authentication
 
 import com.internal.team.wiki.auth.dto.LoginUser
 import com.internal.team.wiki.auth.service.AuthService
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.core.MethodParameter
 import org.springframework.stereotype.Component
 import org.springframework.web.bind.support.WebDataBinderFactory
@@ -9,14 +11,12 @@ import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.web.method.support.HandlerMethodArgumentResolver
 import org.springframework.web.method.support.ModelAndViewContainer
 import javax.servlet.http.HttpServletRequest
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 
 @Component
-class AuthenticationPrincipalArgumentResolver (
+class AuthenticationPrincipalArgumentResolver(
     private val authService: AuthService,
 
-) : HandlerMethodArgumentResolver {
+    ) : HandlerMethodArgumentResolver {
 
     private val log: Logger = LoggerFactory.getLogger(AuthenticationPrincipalArgumentResolver::class.java)
 

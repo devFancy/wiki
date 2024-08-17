@@ -1,8 +1,6 @@
 package com.internal.team.wiki.doc.dto
 
-import com.internal.team.wiki.doc.domain.Contents
 import com.internal.team.wiki.doc.domain.DocEntity
-import com.internal.team.wiki.doc.domain.Title
 import com.internal.team.wiki.user.domain.UserEntity
 import javax.validation.constraints.NotBlank
 

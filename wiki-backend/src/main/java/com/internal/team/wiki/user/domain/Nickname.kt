@@ -6,7 +6,7 @@ import javax.persistence.Column
 import javax.persistence.Embeddable
 
 @Embeddable
-class Nickname (
+class Nickname(
     @Column(name = "nickname", unique = true)
     val value: String
 ) {

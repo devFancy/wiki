@@ -6,7 +6,7 @@ import javax.persistence.Embeddable
 import javax.persistence.Lob
 
 @Embeddable
-class Contents (
+class Contents(
 
     @Column(name = "contents", nullable = false)
     @Lob

@@ -6,7 +6,7 @@ import javax.persistence.Column
 import javax.persistence.Embeddable
 
 @Embeddable
-class Username (
+class Username(
 
     @Column(name = "username")
     var value: String
@@ -16,7 +16,7 @@ class Username (
     }
 
     private fun validate(value: String) {
-        if(value.isBlank()|| !PATTERN.matcher(value).matches()) {
+        if (value.isBlank() || !PATTERN.matcher(value).matches()) {
             throw InvalidUsernameException("유효하지 않은 사용자 이름입니다.")
         }
     }

@@ -1,6 +1,6 @@
 package com.internal.team.wiki.user.domain
 
-enum class RoleType (
+enum class RoleType(
     val roleName: String
 ) {
     USER("USER"),

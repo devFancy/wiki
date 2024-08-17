@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component
 @Component
 class AuthTokenCreator(
     private val tokenProvider: TokenProvider
-): TokenCreator {
+) : TokenCreator {
 
-    override fun createAuthToken(userId: Long?) : AuthAccessToken {
+    override fun createAuthToken(userId: Long?): AuthAccessToken {
         val accessToken: String = tokenProvider.createAccessToken(userId.toString())
 
         return AuthAccessToken(accessToken)

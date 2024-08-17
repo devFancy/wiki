@@ -1,13 +1,13 @@
 package com.internal.team.wiki.user.domain
 
-import com.internal.team.wiki.global.hashing.Hashing
 import com.internal.team.wiki.exception.InvalidPasswordFormatException
+import com.internal.team.wiki.global.hashing.Hashing
 import java.util.regex.Pattern
 import javax.persistence.Column
 import javax.persistence.Embeddable
 
 @Embeddable
-class Password (
+class Password(
 
     @Column(name = "password")
     var value: String

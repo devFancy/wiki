@@ -7,8 +7,8 @@ import com.internal.team.wiki.auth.dto.AccessTokenResponse
 import com.internal.team.wiki.auth.dto.LoginRequest
 import com.internal.team.wiki.auth.dto.LoginUser
 import com.internal.team.wiki.exception.NotFoundUserException
-import com.internal.team.wiki.global.hashing.Hashing
 import com.internal.team.wiki.exception.fail
+import com.internal.team.wiki.global.hashing.Hashing
 import com.internal.team.wiki.user.UserRepository
 import com.internal.team.wiki.user.domain.Password
 import org.springframework.stereotype.Service
@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Transactional(readOnly = true)
 @Service
-class AuthService (
+class AuthService(
     private val authRepository: AuthRepository,
     private val userRepository: UserRepository,
     private val hashing: Hashing,
@@ -53,7 +53,7 @@ class AuthService (
         authRepository.deleteAllById(id)
     }
 
-    fun extractUserId(accessToken: String) : Long {
+    fun extractUserId(accessToken: String): Long {
         val userId = tokenCreator.extractPayLoad(accessToken)
         validateExistByUserId(userId)
         return userId

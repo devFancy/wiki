@@ -4,9 +4,9 @@ import com.internal.team.wiki.global.BaseTimeEntity
 import java.time.LocalDateTime
 import javax.persistence.*
 
-@Table(name ="users")
+@Table(name = "users")
 @Entity
-class UserEntity (
+class UserEntity(
 
     @Embedded
     var username: Username,

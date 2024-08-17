@@ -17,8 +17,9 @@ class DocController(
 ) {
 
     @PostMapping("/api/v1/docs")
-    fun create(@AuthenticationPrincipal loginUser: LoginUser,
-               @RequestBody request: DocCreateRequest
+    fun create(
+        @AuthenticationPrincipal loginUser: LoginUser,
+        @RequestBody request: DocCreateRequest
     ): ResponseEntity<ApiResultResponse<DocDetailResponse>> {
         val response = docService.create(loginUser.id, request)
         val apiResultResponse = ApiResultResponse.success(response, "docs")
@@ -26,8 +27,10 @@ class DocController(
     }
 
     @GetMapping("/api/v1/docs/{id}")
-    fun findOne(@AuthenticationPrincipal loginUser: LoginUser,
-                @PathVariable(name = "id") docId: Long): ResponseEntity<ApiResultResponse<DocDetailResponse>> {
+    fun findOne(
+        @AuthenticationPrincipal loginUser: LoginUser,
+        @PathVariable(name = "id") docId: Long
+    ): ResponseEntity<ApiResultResponse<DocDetailResponse>> {
         val response = docService.findOne(loginUser.id, docId)
         val apiResultResponse = ApiResultResponse.success(response, "docs")
         return ResponseEntity(apiResultResponse, HttpStatus.OK)
@@ -41,9 +44,10 @@ class DocController(
     }
 
     @PatchMapping("/api/v1/docs/{id}")
-    fun update(@AuthenticationPrincipal loginUser: LoginUser,
-               @PathVariable(name = "id") docId: Long,
-               @RequestBody request: DocUpdateRequest
+    fun update(
+        @AuthenticationPrincipal loginUser: LoginUser,
+        @PathVariable(name = "id") docId: Long,
+        @RequestBody request: DocUpdateRequest
     ): ResponseEntity<ApiResultResponse<DocDetailResponse>> {
         val response = docService.update(loginUser.id, docId, request)
         val apiResultResponse = ApiResultResponse.success(response, "docs")
@@ -51,8 +55,10 @@ class DocController(
     }
 
     @DeleteMapping("/api/v1/docs/{id}")
-    fun delete(@AuthenticationPrincipal loginUser: LoginUser,
-               @PathVariable(name = "id") docId: Long): ResponseEntity<ApiResultResponse<Void>> {
+    fun delete(
+        @AuthenticationPrincipal loginUser: LoginUser,
+        @PathVariable(name = "id") docId: Long
+    ): ResponseEntity<ApiResultResponse<Void>> {
         docService.delete(loginUser.id, docId)
         val apiResultResponse = ApiResultResponse.successVoid("docs")
         return ResponseEntity(apiResultResponse, HttpStatus.NO_CONTENT)

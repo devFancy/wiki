@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class UserController (
+class UserController(
     private val userService: UserService,
 ) {
 
@@ -28,8 +28,9 @@ class UserController (
 
     @DeleteMapping("/api/v1/users")
     fun deleteAccount(
-        @AuthenticationPrincipal loginUser: LoginUser) : ResponseEntity<ApiResultResponse<UserDeleteAccountResponse>> {
-        val response : UserDeleteAccountResponse = userService.scheduleDeletion(loginUser.id)
+        @AuthenticationPrincipal loginUser: LoginUser
+    ): ResponseEntity<ApiResultResponse<UserDeleteAccountResponse>> {
+        val response: UserDeleteAccountResponse = userService.scheduleDeletion(loginUser.id)
         val apiResponse = ApiResultResponse.success(response, "users")
         return ResponseEntity(apiResponse, HttpStatus.NO_CONTENT)
     }

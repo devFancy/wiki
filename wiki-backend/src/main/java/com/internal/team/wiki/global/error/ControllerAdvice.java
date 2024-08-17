@@ -68,7 +68,7 @@ public class ControllerAdvice {
             AuthorizationException.class
     })
     public ResponseEntity<ApiResultResponse<ErrorResponse>> handleUnauthorizedException(final CustomException e) {
-        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode() ,e.getMessage());
+        ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode(), e.getMessage());
         ApiResultResponse<ErrorResponse> apiResultResponse = ApiResultResponse.failure(errorResponse, ERROR);
         return new ResponseEntity<>(apiResultResponse, HttpStatus.UNAUTHORIZED);
     }
