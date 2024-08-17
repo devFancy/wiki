@@ -4,6 +4,7 @@ import com.internal.team.wiki.user.domain.UserEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
+import java.time.LocalDateTime
 import java.util.*
 
 interface UserRepository : JpaRepository<UserEntity, Long> {
@@ -22,4 +23,6 @@ interface UserRepository : JpaRepository<UserEntity, Long> {
 
     @Query("SELECT u FROM UserEntity u WHERE u.id = :userId")
     fun findByUserId(@Param("userId") userId: Long?): Optional<UserEntity>
+
+    fun findAllByScheduledDeletionTimeBeforeAndDeletedIsTrue(now: LocalDateTime): List<UserEntity>
 }

@@ -25,8 +25,9 @@ class DatabaseCleaner (
         entityManager.flush()
         entityManager.createNativeQuery("SET foreign_key_checks = 0").executeUpdate()
 
-        tableNames.forEach {
-            tableNames -> entityManager.createNativeQuery("TRUNCATE TABLE $tableNames").executeUpdate()
+        // 테이블 삭제
+        tableNames.forEach { tableName ->
+            entityManager.createNativeQuery("TRUNCATE TABLE $tableName").executeUpdate()
         }
 
         entityManager.createNativeQuery("SET foreign_key_checks = 1").executeUpdate()

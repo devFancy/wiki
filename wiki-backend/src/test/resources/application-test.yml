@@ -12,7 +12,7 @@ spring:
 
     # h2
   datasource:
-    url: 'jdbc:h2:mem:wiki_test'
+    url: 'jdbc:h2:mem:wiki_test:db?serverTimezone=Asia/Seoul;MODE=MYSQL;'
     driver-class-name: org.h2.Driver # localhost:8080/h2-console 접속
     username: 'user'
     password: ''
