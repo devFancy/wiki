@@ -17,11 +17,14 @@ class UserController (
     private val userService: UserService,
 ) {
 
-    @PostMapping("/users/signup")
-    fun signup(@RequestBody signupRequest: UserSignupRequest): ResponseEntity<ApiResultResponse<Long>> {
-        val userId = userService.signup(signupRequest);
+    @PostMapping("/api/v1/users/signup")
+    fun signup(
+        @RequestBody signupRequest: UserSignupRequest
+    ): ResponseEntity<ApiResultResponse<Long>> {
+        val userId = userService.signup(signupRequest)
         val apiResponse = ApiResultResponse.success(userId, "users")
-        return ResponseEntity(apiResponse, HttpStatus.CREATED);
+        return ResponseEntity(apiResponse, HttpStatus.CREATED)
+    }
 
     @DeleteMapping("/api/v1/users")
     fun deleteAccount(
